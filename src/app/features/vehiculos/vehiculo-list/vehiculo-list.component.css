@@ -1,0 +1,186 @@
+body {
+  background-color: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Tarjetas de autos */
+.car-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.car-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.car-details {
+  padding: 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Textos y títulos */
+.h1, .h2, .h3, .h4, .h5, .h6, .caption-title {
+  font-family: 'Raleway', sans-serif;
+}
+
+.caption-title {
+  color: #231F20;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.caption-title:hover {
+  color: rgb(55, 38, 214);
+}
+
+.caption-title-sub {
+  font-size: 14px;
+  font-weight: 700;
+  padding-bottom: 15px;
+  color: #FFB602;
+}
+
+.caption-text {
+  font-size: 13px;
+  min-height: 55px;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  color: #7f7f7f;
+  border-top: 1px solid #e9e9e9;
+  align-items: center;
+}
+
+/* Especificaciones del auto */
+.car-specs {
+  width: 100%;
+  font-size: 13px;
+  text-align: center;
+  border-collapse: collapse;
+  color: #7f7f7f;
+}
+
+.car-specs td {
+  width: 33.33%;
+  padding: 10px;
+  vertical-align: middle;
+  white-space: nowrap;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  font-weight: bold;
+}
+
+/* Botón de renta */
+.rent-button {
+  background: black;
+  color: white;
+  border: 2px solid black;
+  border-radius: 15px;
+  border-bottom-left-radius: 0;
+  padding: 10px 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+}
+
+.rent-button:hover {
+  background-color: #28a745;
+  border-color: #28a745;
+  border-radius: 0;
+}
+
+/* Filtros */
+.filters {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.filters input, .filters select {
+  margin-bottom: 10px;
+}
+
+/* Widget */
+.widget-title {
+  line-height: 20px;
+  font-size: 15px;
+  font-weight: 900;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+
+/* Formulario */
+.form-search.light {
+  background: #ffffff;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+label {
+  font-size: 14px;
+  color: #14181c;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.form-control, .form-select{
+  color: #67696b;
+}
+/* Íconos en formularios */
+.form-control-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: rgba(20, 24, 28, 0.6);
+}
+
+.has-label .form-control-icon {
+  top: 28px;
+}
+
+.widget.shadow {
+  border: solid 1px #f0f0f0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.widget.shadow .widget-title {
+  padding: 25px 20px;
+  margin: 0;
+  background-color: #f5f6f8;
+  color: #6c7481;
+}
+
+.widget.shadow .widget-content {
+  padding: 20px;
+  color: #53575d;
+}
+
+

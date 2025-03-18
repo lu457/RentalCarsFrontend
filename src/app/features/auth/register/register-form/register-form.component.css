@@ -1,0 +1,60 @@
+.register-container {
+    max-width: 400px;
+    margin: 10vh auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f7f7f7;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  button[mat-raised-button],
+  button[mat-stroked-button] {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  button[mat-raised-button]:hover,
+  button[mat-stroked-button]:hover {
+    transform: scale(1.03);
+  }
+  
+  button[mat-raised-button][disabled] {
+    background: rgba(0, 0, 0, 0.1) !important;
+    color: rgba(0, 0, 0, 0.4) !important;
+    cursor: not-allowed;
+  }
+  
+  button[mat-stroked-button] {
+    border-color: #d32f2f;
+    color: #d32f2f;
+  }
+  
+  button[mat-stroked-button]:hover {
+    background-color: rgba(211, 47, 47, 0.1);
+  }
+  

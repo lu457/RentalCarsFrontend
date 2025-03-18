@@ -1,0 +1,38 @@
+<header>
+  <nav class="navbar">
+    <div class="logo">RentaCarl</div>
+
+    <div class="nav-actions">
+      <!-- Botón de Crear Propiedad -->
+      <button mat-button class="create-property-btn" (click)="createVehiculo()">
+        Crear Propiedad
+      </button>
+
+      @if (isAuthenticated()) {
+        <span>Bienvenido, {{ userName() }}</span>
+
+        <button mat-button [matMenuTriggerFor]="userMenu">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item (click)="goToProfile()">Perfil</button>
+          <button mat-menu-item color="warn" (click)="logout()">Cerrar Sesión</button>
+        </mat-menu>
+
+      } @else {
+        <div class="menu-container">
+          <button mat-button class="text-white">
+            <mat-icon>dashboard</mat-icon> Mi Panel
+          </button>
+
+          <div class="mat-menu">
+            <button mat-menu-item routerLink="/login">Iniciar Sesión</button>
+            <button mat-menu-item routerLink="/register">Registrarse</button>
+          </div>
+        </div>
+      }
+    </div>
+  </nav>
+</header>
+

@@ -1,25 +1,17 @@
-export interface Vehiculo {
-    id: string;
-    fechaCreacion: string;
-    fechaActualizacion: string;
+export interface CreateVehiculoRequestDto {
     marca: string;
     modelo: string;
-    ubicacion: string;
     year: number;
     precioPorDia: number;
     calle: string;
     ciudad: string;
     pais: string;
     tipo: string;
-    estado: string;
     descripcion: string;
     motor: string;
     cilindros: number;
     puertas: number;
-    capacidadPasajeros?: number;
+    capacidadPasajeros: number;
     combustible: string;
     transmision: string;
-    calificacionPromedio?: number;
-    imageUrls: string[];
-    resenas: any[];
 }

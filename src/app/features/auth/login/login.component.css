@@ -1,0 +1,64 @@
+/* Imagen de fondo */
+.login-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('https://www.shutterstock.com/image-photo/asphalt-road-city-skyline-modern-600nw-2472218987.jpg')
+    no-repeat center center/cover;
+}
+
+/* Caja del login */
+mat-card {
+  width: 350px;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+}
+
+/* Inputs */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Botón */
+button {
+  margin-top: 8px;
+}
+
+/* Enlace de registro */
+.register-link {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #ff9800;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.register-link a:hover {
+  color: rgb(233, 129, 18);
+}
+
+/* Personalización de los inputs */
+::ng-deep .custom-input .mat-mdc-floating-label {
+  color: white !important;
+}
+
+::ng-deep .custom-input .mdc-text-field__input {
+  background-color: white !important;
+  color: black !important;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Espaciado para el título */
+mat-card-title {
+  margin-bottom: 20px;
+}

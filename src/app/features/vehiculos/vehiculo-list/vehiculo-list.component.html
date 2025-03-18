@@ -1,1 +1,86 @@
-<p>vehiculo-list works!</p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="property-list-container">
+        
+        <div class="loading-container" *ngIf="isLoading()">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <p class="empty-message" *ngIf="!isLoading() && vehiculos().length === 0">
+          No se encontraron Vehiculo.
+        </p>
+
+        <div class="row" *ngIf="!isLoading()">
+          <div class="col-md-6 mb-4" *ngFor="let vehiculo of vehiculos()">
+            <mat-card class="car-card" (click)="openVehiculoInNewTab(vehiculo.id)">
+              <div class="image-container">
+                <mat-spinner *ngIf="loadingImages[vehiculo.id]"></mat-spinner>
+                <img
+                  [src]="vehiculo.imageUrls[0]"
+                  alt="Imagen del vehiculo"
+                  (load)="onImageLoad(vehiculo.id)"
+                  (error)="onImageError(vehiculo, 0)"
+                  class="car-image"
+                />
+              </div>
+
+              <mat-card-content class="car-details">
+                <h4 class="caption-title">{{ vehiculo.marca }} {{ vehiculo.year }}</h4>
+                <h5 class="caption-title-sub">Desde ${{ vehiculo.precioPorDia }} por día</h5>
+                <div class="caption-text">{{ vehiculo.descripcion }}</div>
+                <table class="car-specs">
+                  <tr>
+                    <td><i class="fa fa-car"></i> Año: {{ vehiculo.year }}</td>
+                    <td><i class="fa fa-dashboard"></i> {{ vehiculo.tipo }}</td>
+                    <td><i class="fa fa-cog"></i> {{ vehiculo.transmision }}</td>
+                  </tr>
+                </table>
+                <button class="rent-button mt-2">Rentar</button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="widget shadow widget-find-car">
+        <h4 class="widget-title">BUSCA UN AUTO</h4>
+        <div class="widget-content">
+          Utiliza los siguientes filtros para refinar tu búsqueda.
+          <div class="form-search light">
+            <!-- Ciudad -->
+            <div class="form-group has-icon has-label">
+              <label>Ciudad</label>
+              <select class="form-control">
+                <option>Cualquiera</option>
+              </select>
+              <span class="form-control-icon"><i class="bi bi-geo-alt"></i></span>
+            </div>
+    
+            <!-- Tipo de Auto -->
+            <div class="form-group has-label">
+              <label>Tipo de Auto</label>
+              <select class="form-select">
+                <option>Cualquiera</option>
+                <option>Cualquiera</option>
+                <option>Cualquiera</option>
+              </select>
+            </div>
+    
+            <!-- Fechas de Renta -->
+            <div class="form-group has-label">
+              <label>Fechas de Renta</label>
+              <input type="text" class="form-control" placeholder="16/03/2025 - 16/03/2025">
+            </div>
+    
+            <!-- Botón de Búsqueda -->
+            <button class="rent-button mt-2 w-100">Buscar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

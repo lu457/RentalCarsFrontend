@@ -1,0 +1,91 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    justify-content: space-between;
+    padding: 12px 40px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: black;
+    padding: 17px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Para que quede encima del contenido */
+  }
+  
+  .logo img {
+    height: 40px;
+  }
+  
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .create-property-btn {
+    background-color: #ff385c;
+    color: white;
+    padding: 8px 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .create-property-btn:hover {
+    background-color: #e0314e;
+    transform: scale(1.05);
+  }
+
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+  .nav-actions {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-container {
+    position: relative;
+  }
+  
+  .menu-container:hover .mat-menu {
+    display: block;
+  }
+  
+  .mat-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 5px 0;
+    min-width: 140px;
+  }
+  
+  .mat-menu button {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .mat-menu button:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  

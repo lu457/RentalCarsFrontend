@@ -1,0 +1,72 @@
+<div class="register-container">
+    <h2>Registro</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="register()">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" required />
+        <mat-error *ngIf="form.get('nombre')?.hasError('required')">
+          Nombre requerido.
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="apellido" required />
+        <mat-error *ngIf="form.get('apellido')?.hasError('required')">
+          Apellido requerido.
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Celular</mat-label>
+        <input matInput formControlName="celular" required />
+        <mat-error *ngIf="form.get('celular')?.hasError('required')">
+          Celular requerido.
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" required />
+        <mat-error *ngIf="form.get('email')?.hasError('required')">
+          Email requerido.
+        </mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('email')">
+          Email inválido.
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+          required
+          minlength="6"
+        />
+        <mat-error *ngIf="form.get('password')?.hasError('required')">
+          La contraseña es obligatoria.
+        </mat-error>
+        <mat-error *ngIf="form.get('password')?.hasError('minlength')">
+          La contraseña debe tener al menos 6 caracteres.
+        </mat-error>
+      </mat-form-field>
+  
+      <div class="button-container">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="form.invalid || isLoading()"
+        >
+          {{ isLoading() ? "Registrando..." : "Registrarse" }}
+        </button>
+  
+        <button mat-stroked-button color="warn" type="button" routerLink="/">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>

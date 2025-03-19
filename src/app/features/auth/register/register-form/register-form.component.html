@@ -42,14 +42,14 @@
         <input
           matInput
           type="password"
-          formControlName="password"
+          formControlName="contraseña"
           required
           minlength="6"
         />
-        <mat-error *ngIf="form.get('password')?.hasError('required')">
+        <mat-error *ngIf="form.get('contraseña')?.hasError('required')">
           La contraseña es obligatoria.
         </mat-error>
-        <mat-error *ngIf="form.get('password')?.hasError('minlength')">
+        <mat-error *ngIf="form.get('contraseña')?.hasError('minlength')">
           La contraseña debe tener al menos 6 caracteres.
         </mat-error>
       </mat-form-field>

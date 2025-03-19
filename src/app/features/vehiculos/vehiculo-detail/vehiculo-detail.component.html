@@ -1,1 +1,59 @@
-<p>vehiculo-detail works!</p>
+<div class="property-detail-container" *ngIf="!isLoading() && vehiculo()">
+    <h1 class="property-title">{{ vehiculo()?.marca }}</h1>
+  
+    <div
+      class="property-gallery"
+      [ngClass]="{ 'full-width': vehiculo()?.imageUrls?.length === 1 }"
+    >
+      <img
+        class="main-image"
+        [src]="vehiculo()?.imageUrls?.[0] || defaultImage"
+        alt="Imagen principal"
+      />
+  
+      <div class="sub-images" *ngIf="(vehiculo()?.imageUrls?.length ?? 0) > 1">
+        <img
+          *ngFor="let img of vehiculo()?.imageUrls?.slice(1, 5)"
+          [src]="img"
+          alt="Imagen de la propiedad"
+          class="sub-image"
+        />
+      </div>
+    </div>
+  
+    <button
+      *ngIf="(vehiculo()?.imageUrls?.length ?? 0) > 5"
+      class="show-more-button"
+    >
+      Mostrar todas las fotos
+    </button>
+  
+    <div class="property-info">
+      <h2>
+        Alojamiento entero: {{ vehiculo()?.tipo }} en {{ vehiculo()?.ubicacion }}
+      </h2>
+      <p>
+        {{ vehiculo()?.capacidadPasajeros }} huéspedes ·
+        {{ vehiculo()?.puertas }} habitación(es) ·
+        {{ vehiculo()?.cilindros }} baño(s)
+      </p>
+  
+      <div class="highlight">
+        <span class="badge">Favorito entre huéspedes</span>
+        <span>
+          <strong>{{ vehiculo()?.calificacionPromedio?.toFixed(2) }}</strong> ⭐️ ({{
+            vehiculo()?.resenas?.length
+          }}
+          Reseñas)
+        </span>
+      </div>
+  
+      <p class="price">
+        S/{{ vehiculo()?.precioPorDia }} <span class="per-night">noche</span>
+      </p>
+    </div>
+  </div>
+  
+  <div class="loading-container" *ngIf="isLoading()">
+    <mat-spinner></mat-spinner>
+  </div>

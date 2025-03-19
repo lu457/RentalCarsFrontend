@@ -30,6 +30,11 @@
         <input matInput formControlName="precioPorDia" required />
       </mat-form-field>
 
+      <mat-form-field class="full-width">
+        <mat-label>Descripcion</mat-label>
+        <textarea matInput formControlName="descripcion" required></textarea>
+      </mat-form-field>
+      
       <mat-form-field>
         <mat-label>Tipo</mat-label>
         <mat-select formControlName="tipo" required>
@@ -39,11 +44,6 @@
           <mat-option value="3">Electrico</mat-option>
           <mat-option value="4">Compacto</mat-option>
         </mat-select>
-      </mat-form-field>
-
-      <mat-form-field class="full-width">
-        <mat-label>Descripcion</mat-label>
-        <textarea matInput formControlName="descripcion" required></textarea>
       </mat-form-field>
 
       <mat-form-field>

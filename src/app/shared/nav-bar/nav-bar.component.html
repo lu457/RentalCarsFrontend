@@ -4,14 +4,14 @@
 
     <div class="nav-actions">
       <!-- Botón de Crear Propiedad -->
-      <button mat-button class="create-property-btn" (click)="createVehiculo()">
-        Crear Propiedad
+      <button mat-button class="text-white" (click)="createVehiculo()">
+        <i class="bi bi-car-front"></i> Publicar Vehículo
       </button>
 
       @if (isAuthenticated()) {
         <span>Bienvenido, {{ userName() }}</span>
 
-        <button mat-button [matMenuTriggerFor]="userMenu">
+        <button mat-button [matMenuTriggerFor]="userMenu" class="text-white">
           <mat-icon>account_circle</mat-icon>
         </button>
 

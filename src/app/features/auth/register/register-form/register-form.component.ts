@@ -43,7 +43,7 @@ export class RegisterFormComponent {
       apellido: ['', [Validators.required]],
       celular: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      contraseña: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -73,7 +73,9 @@ export class RegisterFormComponent {
           }
         );
 
-        this.router.navigate(['/login']);
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 3000); // Espera 3 segundos antes de redirigir
       },
       error: (error: Error) => {
         this.isLoading.set(false);

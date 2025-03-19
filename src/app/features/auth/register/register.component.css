@@ -1,0 +1,10 @@
+.register-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url('https://img.freepik.com/fotos-premium/foto-borrosa-coche-conduciendo-calle_871710-15346.jpg'); /* Reemplaza con la ruta de tu imagen */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

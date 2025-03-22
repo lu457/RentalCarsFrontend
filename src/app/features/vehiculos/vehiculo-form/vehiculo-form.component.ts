@@ -49,8 +49,9 @@ export class VehiculoFormComponent {
   vehiculoId: string | null;
   isEditMode = signal(false);
   isLoading = signal(false);
-  imagePreviews: string[] = [];
+  imagePreviews: { url: string; file: File; esPrincipal: boolean }[] = [];
   selectedImages: File[] = [];
+  selectedPrincipalIndex: number | null = null; // Índice de la imagen principal
 
   constructor() {
     this.form = this.fb.group({
@@ -60,12 +61,12 @@ export class VehiculoFormComponent {
       marca: ['', Validators.required],
       modelo: ['', Validators.required],
       year: [1999, [Validators.required, Validators.min(1999)]],
-      precioPorDia: [0, [Validators.required, Validators.min(1)]],
+      precioPorDia: ['', [Validators.required, Validators.min(1)]],
       tipo: ['', Validators.required],
       descripcion: ['', [Validators.required, Validators.minLength(20)]],
       motor: ['', Validators.required],
       cilindros: [1, [Validators.required, Validators.min(1)]],
-      puertas: [1, [Validators.required, Validators.min(1)]],
+      puertas: [4, [Validators.required, Validators.min(4)]],
       capacidadPasajeros: [1, [Validators.required, Validators.min(1)]],
       combustible: ['', Validators.required],
       transmision: ['', Validators.required],
@@ -87,11 +88,19 @@ export class VehiculoFormComponent {
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (!input.files) return;
-
+  
     this.selectedImages = Array.from(input.files);
-    this.imagePreviews = this.selectedImages.map((file) =>
-      URL.createObjectURL(file)
-    );
+    this.imagePreviews = this.selectedImages.map((file, index) => ({
+      url: URL.createObjectURL(file),
+      file,
+      esPrincipal: index === 0, // La primera imagen será principal por defecto
+    }));
+    this.selectedPrincipalIndex = 0; // Marca la primera imagen como principal
+  }
+  
+  setPrincipalImage(index: number) {
+    this.selectedPrincipalIndex = index;
+    this.imagePreviews.forEach((img, i) => img.esPrincipal = (i === index));
   }
 
   showConfirmationDialog(message: string) {
@@ -152,28 +161,50 @@ export class VehiculoFormComponent {
 
   uploadImagesIfNeeded(vehiculoId: string) {
     if (this.selectedImages.length > 0) {
-      this.vehiculoService
-        .uploadVehiculoImages(vehiculoId, this.selectedImages)
-        .subscribe({
-          next: () => {
-            this.isLoading.set(false);
-            this.showConfirmationDialog(
-              'Vehiculos e imágenes guardados con éxito'
-            );
-          },
-          error: () => {
-            this.isLoading.set(false);
-            this.snackBar.open('Error al subir imágenes', 'Cerrar', {
-              duration: 3000,
-            });
-          },
-        });
+      const formData = new FormData();
+      
+      this.selectedImages.forEach((file, index) => {
+        formData.append('files', file);
+        formData.append('esPrincipal', index === 0 ? '1' : '0');
+      });
+  
+      this.vehiculoService.uploadVehiculoImages(vehiculoId, formData).subscribe({
+        next: () => {
+          this.isLoading.set(false);
+          this.showConfirmationDialog('Vehículo e imágenes guardados con éxito');
+        },
+        error: () => {
+          this.isLoading.set(false);
+          this.snackBar.open('Error al subir imágenes', 'Cerrar', { duration: 3000 });
+        },
+      });
     } else {
       this.isLoading.set(false);
-      this.showConfirmationDialog('Vehiculo guardado con éxito');
+      this.showConfirmationDialog('Vehículo guardado con éxito');
     }
   }
+  
 
+  removeImage(index: number) {
+    URL.revokeObjectURL(this.imagePreviews[index].url);
+    
+    // Eliminar la imagen de las listas
+    this.imagePreviews.splice(index, 1);
+    this.selectedImages.splice(index, 1);
+  
+    if (this.selectedPrincipalIndex === index) {
+      this.selectedPrincipalIndex = this.imagePreviews.length > 0 ? 0 : null;
+      if (this.selectedPrincipalIndex !== null) {
+        this.imagePreviews[0].esPrincipal = true;
+      }
+    }
+  
+    const fileInput = document.querySelector<HTMLInputElement>('#fileInput');
+    if (fileInput) {
+      fileInput.value = '';
+    }
+  }
+  
   cancel() {
     this.router.navigate(['/']);
   }

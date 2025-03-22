@@ -20,6 +20,6 @@ export interface Vehiculo {
     combustible: string;
     transmision: string;
     calificacionPromedio?: number;
-    imageUrls: string[];
     resenas: any[];
+    imageUrls: string[];
 }

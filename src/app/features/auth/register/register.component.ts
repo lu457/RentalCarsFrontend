@@ -8,6 +8,4 @@ import { RegisterFormComponent } from "./register-form/register-form.component";
   styleUrl: './register.component.css',
   imports: [RegisterFormComponent]
 })
-export class RegisterComponent {
-
-}
+export class RegisterComponent {}

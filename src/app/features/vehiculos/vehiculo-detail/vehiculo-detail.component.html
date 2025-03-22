@@ -1,59 +1,77 @@
-<div class="property-detail-container" *ngIf="!isLoading() && vehiculo()">
-    <h1 class="property-title">{{ vehiculo()?.marca }}</h1>
-  
-    <div
-      class="property-gallery"
-      [ngClass]="{ 'full-width': vehiculo()?.imageUrls?.length === 1 }"
-    >
-      <img
-        class="main-image"
-        [src]="vehiculo()?.imageUrls?.[0] || defaultImage"
-        alt="Imagen principal"
-      />
-  
-      <div class="sub-images" *ngIf="(vehiculo()?.imageUrls?.length ?? 0) > 1">
-        <img
-          *ngFor="let img of vehiculo()?.imageUrls?.slice(1, 5)"
-          [src]="img"
-          alt="Imagen de la propiedad"
-          class="sub-image"
-        />
+<section class="page-section with-sidebar sub-page">
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 content" id="content" *ngIf="vehiculo()">
+      <h3 class="block-title alt">
+        <i class="fa fa-angle-down"></i> Información del auto
+      </h3>
+      <div class="car-big-card alt">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="img-container">
+              <i class="fa fa-expand expand-icon" (click)="abrirModal(selectedImage())" data-bs-toggle="modal" data-bs-target="#imageModal"></i>
+              <div class="owl-carousel img-carousel owl-theme owl-loaded">
+                <div class="item">
+                  <img class="img-fluid" [src]="selectedImage()" alt="Imagen principal" (click)="abrirModal(selectedImage())" data-bs-toggle="modal" data-bs-target="#imageModal" />
+                </div>
+              </div>
+              <i class="fa fa-chevron-left custom-nav prev-btn" (click)="prevImage()"></i>
+              <i class="fa fa-chevron-right custom-nav next-btn" (click)="nextImage()"></i>
+              <div class="car-thumbnails" *ngIf="(vehiculo()?.imageUrls?.length ?? 0) > 1">
+                <div class="thumb-container" *ngFor="let img of vehiculo()?.imageUrls">
+                  <img [src]="img" alt="Imagen del vehículo" class="car-thumbnail" (click)="changeMainImage(img)" />
+                  <div class="hover-overlay"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="car-details">
+              <div class="list">
+                <ul>
+                  <li class="title">
+                    <h2>{{ vehiculo()?.marca }} <span>{{ vehiculo()?.year }}</span></h2>
+                    {{ vehiculo()?.modelo }}
+                  </li>
+                  <li>{{ vehiculo()?.combustible }}</li>
+                  <li>Motor {{ vehiculo()?.motor }}</li>
+                  <li>{{ vehiculo()?.cilindros }} Cilindros</li>
+                  <li>Trans. {{ vehiculo()?.transmision }}</li>
+                  <li>{{ vehiculo()?.puertas }} Puertas</li>
+                  <li>{{ vehiculo()?.capacidadPasajeros }} Plazas</li>
+                </ul>
+              </div>
+              <div class="price">
+                <strong>S/ {{ vehiculo()?.precioPorDia }}</strong><br>
+                <span>Precio por día </span> <i class="fa fa-info-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  
-    <button
-      *ngIf="(vehiculo()?.imageUrls?.length ?? 0) > 5"
-      class="show-more-button"
-    >
-      Mostrar todas las fotos
-    </button>
-  
-    <div class="property-info">
-      <h2>
-        Alojamiento entero: {{ vehiculo()?.tipo }} en {{ vehiculo()?.ubicacion }}
-      </h2>
-      <p>
-        {{ vehiculo()?.capacidadPasajeros }} huéspedes ·
-        {{ vehiculo()?.puertas }} habitación(es) ·
-        {{ vehiculo()?.cilindros }} baño(s)
-      </p>
-  
-      <div class="highlight">
-        <span class="badge">Favorito entre huéspedes</span>
-        <span>
-          <strong>{{ vehiculo()?.calificacionPromedio?.toFixed(2) }}</strong> ⭐️ ({{
-            vehiculo()?.resenas?.length
-          }}
-          Reseñas)
-        </span>
-      </div>
-  
-      <p class="price">
-        S/{{ vehiculo()?.precioPorDia }} <span class="per-night">noche</span>
-      </p>
+      &nbsp;
+      <div class="aviso" role="alert">{{ vehiculo()?.descripcion }}</div>
+      &nbsp;
     </div>
   </div>
-  
-  <div class="loading-container" *ngIf="isLoading()">
-    <mat-spinner></mat-spinner>
+</div>
+</section>
+<div class="modal fade bd-example-modal-lg" id="imageModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Vista ampliada</h5>
+        <button type="button" class="btn btn-danger d-flex align-items-center ms-auto" data-bs-dismiss="modal">
+          <i class="fa fa-times me-2"></i> Cerrar
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img [src]="modalImageSrc()" class="img-fluid" alt="Imagen ampliada">
+      </div>
+    </div>
   </div>
+</div>
+
+<div class="loading-container" *ngIf="isLoading()">
+  <mat-spinner></mat-spinner>
+</div>

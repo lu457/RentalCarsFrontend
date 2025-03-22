@@ -1,123 +1,123 @@
 <div class="form-container">
-    <h2>{{ isEditMode() ? "Editar Vehiculo" : "Nuevo Vehiculo" }}</h2>
-  
-    <div *ngIf="isLoading()">
-      <mat-spinner></mat-spinner>
-    </div>
-  
-    <form [formGroup]="form">
-      <mat-form-field class="full-width">
-        <mat-label>Marca</mat-label>
-        <input matInput formControlName="marca" required />
-        <mat-error
-          *ngIf="form.get('marca')?.invalid && form.get('marca')?.touched"
-        >
-        </mat-error>
+  <h2>{{ isEditMode() ? "Editar Vehículo" : "Nuevo Vehículo" }}</h2>
 
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Modelo</mat-label>
-        <input matInput formControlName="modelo" required />
-      </mat-form-field>
+  <div *ngIf="isLoading()" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
 
-    <mat-form-field class="full-width">
+  <form [formGroup]="form" class="form-grid">
+    <mat-form-field>
+      <mat-label>Marca</mat-label>
+      <input matInput formControlName="marca" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Modelo</mat-label>
+      <input matInput formControlName="modelo" required />
+    </mat-form-field>
+
+    <mat-form-field>
       <mat-label>Año</mat-label>
-      <input matInput formControlName="year" required />
+      <input matInput type="number" formControlName="year" required min="1900" max="2100" />
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Precio por día</mat-label>
+      <input matInput type="number" formControlName="precioPorDia" class="example-right-align" placeholder="0" />
+      <span matTextPrefix>$&nbsp;</span>
+      <span matTextSuffix>.00</span>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Tipo</mat-label>
+      <mat-select formControlName="tipo" required>
+        <mat-option value="0">Sedán</mat-option>
+        <mat-option value="1">Camioneta</mat-option>
+        <mat-option value="2">Deportivo</mat-option>
+        <mat-option value="3">Eléctrico</mat-option>
+        <mat-option value="4">Compacto</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Motor</mat-label>
+      <input matInput formControlName="motor" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Cilindros</mat-label>
+      <input matInput type="number" formControlName="cilindros" required min="1" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Puertas</mat-label>
+      <input matInput type="number" formControlName="puertas" required min="2" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Capacidad de pasajeros</mat-label>
+      <input matInput type="number" formControlName="capacidadPasajeros" required min="1" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Combustible</mat-label>
+      <mat-select formControlName="combustible" required>
+        <mat-option value="0">Gasolina</mat-option>
+        <mat-option value="1">Diésel</mat-option>
+        <mat-option value="2">Eléctrico</mat-option>
+        <mat-option value="3">Híbrido</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Transmisión</mat-label>
+      <mat-select formControlName="transmision" required>
+        <mat-option value="0">Manual</mat-option>
+        <mat-option value="1">Automática</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Calle</mat-label>
+      <input matInput formControlName="calle" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ciudad</mat-label>
+      <input matInput formControlName="ciudad" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>País</mat-label>
+      <input matInput formControlName="pais" required />
     </mat-form-field>
 
     <mat-form-field class="full-width">
-        <mat-label>Precio por dia</mat-label>
-        <input matInput formControlName="precioPorDia" required />
-      </mat-form-field>
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="descripcion" required></textarea>
+    </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Descripcion</mat-label>
-        <textarea matInput formControlName="descripcion" required></textarea>
-      </mat-form-field>
+    <div class="image-upload full-width">
+      <label>Subir Imágenes</label>
+      <input #fileInput type="file" (change)="onFileSelected($event)" multiple>
+
       
-      <mat-form-field>
-        <mat-label>Tipo</mat-label>
-        <mat-select formControlName="tipo" required>
-          <mat-option value="0">Sedan</mat-option>
-          <mat-option value="1">Camioneta</mat-option>
-          <mat-option value="2">Deportivo</mat-option>
-          <mat-option value="3">Electrico</mat-option>
-          <mat-option value="4">Compacto</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Motor</mat-label>
-        <input matInput formControlName="motor" required />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Cilindros</mat-label>
-        <input matInput type="number" formControlName="cilindros" required />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Puertas</mat-label>
-        <input matInput type="number" formControlName="puertas" required />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Capacidad de pasajeros</mat-label>
-        <input matInput type="number" formControlName="capacidadPasajeros" required />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Combustible</mat-label>
-        <mat-select formControlName="combustible" required>
-          <mat-option value="0">Gasolina</mat-option>
-          <mat-option value="1">Diesel</mat-option>
-          <mat-option value="2">Electrico</mat-option>
-          <mat-option value="3">Hibrido</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Transmision</mat-label>
-        <mat-select formControlName="transmision" required>
-          <mat-option value="0">Manual</mat-option>
-          <mat-option value="1">Automatica</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Calle</mat-label>
-        <input matInput formControlName="calle" required />
-      </mat-form-field>
-  
-      <mat-form-field>
-        <mat-label>Ciudad</mat-label>
-        <input matInput formControlName="ciudad" required />
-      </mat-form-field>
-  
-      <mat-form-field>
-        <mat-label>País</mat-label>
-        <input matInput formControlName="pais" required />
-      </mat-form-field>
-  
-      <div class="image-upload full-width">
-        <label>Subir Imágenes</label>
-        <input type="file" (change)="onFileSelected($event)" multiple />
-        <div class="image-preview" *ngIf="imagePreviews.length > 0">
-          <img
-            *ngFor="let img of imagePreviews"
-            [src]="img"
-            alt="Previsualización"
-          />
+      <div class="image-preview" *ngIf="imagePreviews.length > 0">
+        <div *ngFor="let img of imagePreviews; let i = index" class="image-container">
+          <img [src]="img.url" alt="Previsualización" class="preview-image" />
+          
+          <button (click)="setPrincipalImage(i)" [class.selected]="img.esPrincipal">
+            {{ img.esPrincipal ? 'Principal ✅' : 'Marcar como principal' }}
+          </button>
+          <button (click)="removeImage(i)" class="delete-button">🗑️ Eliminar</button>
         </div>
       </div>
-  
-      <div class="button-container">
-        <button mat-raised-button color="primary" (click)="saveVehiculo()">
-          Guardar
-        </button>
-        <button mat-stroked-button color="warn" (click)="cancel()">
-          Cancelar
-        </button>
-      </div>
-    </form>
-  </div>
+      
+    </div>
+
+    <div class="button-container">
+      <button mat-raised-button color="primary" (click)="saveVehiculo()">Guardar</button>
+      <button mat-stroked-button color="warn" (click)="cancel()">Cancelar</button>
+    </div>
+  </form>
+</div>

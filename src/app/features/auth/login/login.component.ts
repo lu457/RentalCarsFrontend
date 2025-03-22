@@ -28,7 +28,7 @@ import { AuthService } from '../../../core/auth.service';
 })
 export class LoginComponent {
   email = '';
-  password  = '';
+  password = '';
   isLoading = false;
 
   constructor(

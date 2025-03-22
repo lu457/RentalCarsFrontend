@@ -1,59 +1,87 @@
 .form-container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-  
-  mat-form-field {
-    width: 100%;
-  }
-  
-  .full-width {
-    grid-column: span 2;
-  }
-  
-  .button-container {
-    grid-column: span 2;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  mat-spinner {
-    display: block;
-    margin: auto;
-  }
-  
-  @media (max-width: 768px) {
-    form {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  .image-upload {
-    display: flex;
-    flex-direction: column;
-    margin-top: 15px;
-  }
-  
-  .image-preview {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  
-  .image-preview img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
-  
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.full-width {
+  grid-column: span 2;
+}
+.price-field input {
+  text-align: right;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  grid-column: span 2;
+}
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.image-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.preview-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.image-container button {
+  margin-top: 5px;
+  padding: 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.image-container .selected {
+  background-color: #4caf50;
+  color: white;
+}
+
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+.delete-button {
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #cc0000;
+  transform: scale(1.1);
+}

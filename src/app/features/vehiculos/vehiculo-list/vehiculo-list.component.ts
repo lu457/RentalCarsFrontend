@@ -26,7 +26,7 @@ import { VehiculoService } from '../vehiculo.service';
   templateUrl: './vehiculo-list.component.html',
   styleUrl: './vehiculo-list.component.css'
 })
-export class VehiculoListComponent implements OnInit{
+export class VehiculoListComponent implements OnInit {
   vehiculos = signal<Vehiculo[]>([]);
   isLoading = signal<boolean>(false);
   loadingImages: { [key: string]: boolean } = {};

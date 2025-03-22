@@ -10,7 +10,7 @@ import { VehiculoListComponent } from './features/vehiculos/vehiculo-list/vehicu
 
 export const routes: Routes = [
     {path: '', component: VehiculoListComponent },
-    {path: 'vehiculo/id', component: VehiculoDetailComponent},
+    {path: 'vehiculo/:id', component: VehiculoDetailComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {

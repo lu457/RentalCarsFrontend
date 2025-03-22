@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Vehiculo } from '../../models/vehiculo.model';
+import { ConfigService } from '../../core/config.service';
 import { CreateVehiculoRequestDto } from '../../models/dtos/create-vehiculo.dto';
 import { VehiculoResponseDto } from '../../models/dtos/vehiculo-response.dto';
 import { UpdateVehiculoRequestDto } from '../../models/dtos/update-vehiculo.dto';
-import { ConfigService } from '../../core/config.service';
-
+import { Vehiculo } from '../../models/vehiculo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -44,25 +43,20 @@ export class VehiculoService {
     vehiculo: UpdateVehiculoRequestDto
   ): Observable<VehiculoResponseDto> {
     return this.http.put<VehiculoResponseDto>(
-      `${this.apiUrl}/api/vehiculo/${vehiculo.id}`,
+      `${this.apiUrl}/api/vehiculos/${vehiculo.id}`,
       vehiculo
     );
   }
 
-  uploadVehiculoImages(vehiculoId: string, images: File[]): Observable<void> {
-    const formData = new FormData();
-
-    images.forEach((image) => {
-      formData.append('images', image);
-    });
-
+  uploadVehiculoImages(vehiculoId: string, formData: FormData): Observable<void> {
     return this.http.post<void>(
       `${this.apiUrl}/api/vehiculos/${vehiculoId}/images`,
       formData
     );
   }
+  
 
   deleteVehiculo(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/api/vehiculo/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/api/vehiculos/${id}`);
   }
 }

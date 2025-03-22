@@ -103,3 +103,7 @@ span{
   color: rgb(133, 205, 235);
   padding: 0 10px 4px;
 }
+.logo a {
+  text-decoration: none; /* Elimina el subrayado */
+
+}

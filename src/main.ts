@@ -10,6 +10,6 @@ fetch('/assets/config.json')
     return bootstrapApplication(AppComponent, appConfig);
   })
   .catch((error) => {
-    console.error('❌ No se pudo cargar config.json:', error);
+    console.error('No se pudo cargar config.json:', error);
   });
 

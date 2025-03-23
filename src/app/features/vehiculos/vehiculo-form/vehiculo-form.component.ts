@@ -81,9 +81,14 @@ export class VehiculoFormComponent {
 
   loadVehiculo(id: string) {
     this.vehiculoService.getVehiculoById(id).subscribe((vehiculo) => {
+      if (vehiculo.ubicacion) {
+        const [calle, ciudad, pais] = vehiculo.ubicacion.split(', ');
+        Object.assign(vehiculo, { calle, ciudad, pais });
+      }
       this.form.patchValue(vehiculo);
     });
   }
+  
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -93,9 +98,9 @@ export class VehiculoFormComponent {
     this.imagePreviews = this.selectedImages.map((file, index) => ({
       url: URL.createObjectURL(file),
       file,
-      esPrincipal: index === 0, // La primera imagen será principal por defecto
+      esPrincipal: index === 0,
     }));
-    this.selectedPrincipalIndex = 0; // Marca la primera imagen como principal
+    this.selectedPrincipalIndex = 0;
   }
   
   setPrincipalImage(index: number) {
@@ -209,4 +214,3 @@ export class VehiculoFormComponent {
     this.router.navigate(['/']);
   }
 }
-

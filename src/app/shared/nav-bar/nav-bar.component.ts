@@ -35,6 +35,9 @@ export class NavBarComponent {
   goToProfile() {
     this.router.navigate(['/profile']);
   }
+  getVehiculosPorPropietario() {
+    this.router.navigate(['/vehiculos/tabla']);
+  }
 
   createVehiculo() {
     this.router.navigate(['/vehiculos/new']);

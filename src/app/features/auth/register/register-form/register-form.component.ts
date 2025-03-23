@@ -75,7 +75,7 @@ export class RegisterFormComponent {
 
         setTimeout(() => {
           this.router.navigate(['/login']);
-        }, 3000); // Espera 3 segundos antes de redirigir
+        }, 3000);
       },
       error: (error: Error) => {
         this.isLoading.set(false);

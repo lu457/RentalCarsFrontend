@@ -1,4 +1,3 @@
-/* Imagen de fondo */
 .login-container {
   height: 100vh;
   display: flex;
@@ -8,7 +7,6 @@
     no-repeat center center/cover;
 }
 
-/* Caja del login */
 mat-card {
   width: 350px;
   padding: 30px;
@@ -18,18 +16,15 @@ mat-card {
   border-radius: 10px;
 }
 
-/* Inputs */
 mat-form-field {
   width: 100%;
   margin-bottom: 15px;
 }
 
-/* Botón */
 button {
   margin-top: 8px;
 }
 
-/* Enlace de registro */
 .register-link {
   margin-top: 10px;
   font-size: 14px;
@@ -46,7 +41,6 @@ button {
   color: rgb(233, 129, 18);
 }
 
-/* Personalización de los inputs */
 ::ng-deep .custom-input .mat-mdc-floating-label {
   color: white !important;
 }
@@ -58,7 +52,6 @@ button {
   padding: 10px;
 }
 
-/* Espaciado para el título */
 mat-card-title {
   margin-bottom: 20px;
 }

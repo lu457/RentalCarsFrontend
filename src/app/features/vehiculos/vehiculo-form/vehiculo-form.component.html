@@ -31,13 +31,15 @@
     <mat-form-field>
       <mat-label>Tipo</mat-label>
       <mat-select formControlName="tipo" required>
-        <mat-option value="0">Sedán</mat-option>
-        <mat-option value="1">Camioneta</mat-option>
-        <mat-option value="2">Deportivo</mat-option>
-        <mat-option value="3">Eléctrico</mat-option>
-        <mat-option value="4">Compacto</mat-option>
+        <mat-option value="Sedan">Sedán</mat-option>
+        <mat-option value="SUV">SUV</mat-option>
+        <mat-option value="Camioneta">Camioneta</mat-option>
+        <mat-option value="Deportivo">Deportivo</mat-option>
+        <mat-option value="Electrico">Eléctrico</mat-option>
+        <mat-option value="Compacto">Compacto</mat-option>
       </mat-select>
     </mat-form-field>
+    
 
     <mat-form-field>
       <mat-label>Motor</mat-label>
@@ -62,18 +64,18 @@
     <mat-form-field>
       <mat-label>Combustible</mat-label>
       <mat-select formControlName="combustible" required>
-        <mat-option value="0">Gasolina</mat-option>
-        <mat-option value="1">Diésel</mat-option>
-        <mat-option value="2">Eléctrico</mat-option>
-        <mat-option value="3">Híbrido</mat-option>
+        <mat-option value="Gasolina">Gasolina</mat-option>
+        <mat-option value="Diesel">Diésel</mat-option>
+        <mat-option value="Electrico">Eléctrico</mat-option>
+        <mat-option value="Hibrido">Híbrido</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Transmisión</mat-label>
       <mat-select formControlName="transmision" required>
-        <mat-option value="0">Manual</mat-option>
-        <mat-option value="1">Automática</mat-option>
+        <mat-option value="Manual">Manual</mat-option>
+        <mat-option value="Automatica">Automática</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -117,7 +119,7 @@
 
     <div class="button-container">
       <button mat-raised-button color="primary" (click)="saveVehiculo()">Guardar</button>
-      <button mat-stroked-button color="warn" (click)="cancel()">Cancelar</button>
+      <button mat-stroked-button color="warn" type="button" (click)="cancel()">Cancelar</button>
     </div>
   </form>
 </div>

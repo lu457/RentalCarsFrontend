@@ -2,14 +2,39 @@
   <div class="row">
     <div class="col-md-8">
       <div class="property-list-container">
-        
         <div class="loading-container" *ngIf="isLoading()">
           <mat-spinner></mat-spinner>
         </div>
 
-        <p class="empty-message" *ngIf="!isLoading() && vehiculos().length === 0">
-          No se encontraron Vehiculo.
-        </p>
+        <div class="d-flex justify-content-center">
+
+          <div class="card text-center border-3 shadow-sm p-4" *ngIf="!isLoading() && vehiculos().length === 0 && !filtroAplicado">
+            <div class="card-body">
+              <h5 class="card-title text-danger">
+                <i class="bi bi-car-front-fill"></i> No hay vehículos disponibles
+              </h5>
+              <p class="card-text text-muted">
+                Por el momento no hay vehículos registrados en la plataforma.
+              </p>
+              <button class="btn btn-primary" (click)="recargarVehiculos()">🔄 Recargar</button>
+            </div>
+          </div>
+        
+          <div class="card text-center border-3 shadow-sm p-4" *ngIf="!isLoading() && vehiculos().length === 0 && filtroAplicado">
+            <div class="card-body">
+              <h5 class="card-title text-warning">
+                <i class="bi bi-exclamation-triangle-fill"></i> No se encontraron resultados
+              </h5>
+              <p class="card-text text-muted">
+                No hay vehículos con los filtros aplicados. Intenta con otra ubicación o tipo de vehículo.
+              </p>
+              <button class="btn btn-secondary" (click)="limpiarFiltros()">❌ Limpiar filtros</button>
+            </div>
+          </div>
+        </div>
+        
+
+        
 
         <div class="row" *ngIf="!isLoading()">
           <div class="col-md-6 mb-4" *ngFor="let vehiculo of vehiculos()">
@@ -53,7 +78,11 @@
             <!-- Ciudad -->
             <div class="form-group has-icon has-label">
               <label>Ciudad</label>
-              <input type="text" class="form-control" placeholder="Escribe una ciudad">
+              <input
+              type="text" class="form-control" 
+              placeholder="Filtrar por ubicación"
+              [(ngModel)]="ubicacion"
+            />
               <span class="form-control-icon"><i class="bi bi-geo-alt"></i></span>
             </div>
             
@@ -61,17 +90,13 @@
             <!-- Tipo de Auto -->
             <div class="form-group has-label">
               <label>Tipo de Auto</label>
-              <select class="form-select">
-                <option value="0">Sedán</option>
-                <option value="1">Camioneta</option>
-                <option value="2">Deportivo</option>
-                <option value="3">Eléctrico</option>
-                <option value="4">Compacto</option>
+              <select [(ngModel)]="tipoVehiculo" class="form-select"> 
+                <option value="">Todos los tipos</option>
+                <option *ngFor="let tipo of tiposVehiculo" [value]="tipo">{{ tipo }}</option>
               </select>
             </div> 
-            
-            <!-- Botón de Búsqueda -->
-            <button class="rent-button mt-2 w-100">Buscar</button>
+        
+            <button (click)="filtrarVehiculos()" class="rent-button mt-2 w-100">Buscar</button>
           </div>
         </div>
       </div>

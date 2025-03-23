@@ -9,12 +9,14 @@ import { Router, RouterModule } from '@angular/router';
 import { ConfigService } from '../../../core/config.service';
 import { Vehiculo } from '../../../models/vehiculo.model';
 import { VehiculoService } from '../vehiculo.service';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-vehiculo-list',
   standalone: true,
   imports: [
+    FormsModule,
     CommonModule,
     MatInputModule,
     MatButtonModule,
@@ -29,8 +31,11 @@ import { VehiculoService } from '../vehiculo.service';
 export class VehiculoListComponent implements OnInit {
   vehiculos = signal<Vehiculo[]>([]);
   isLoading = signal<boolean>(false);
+  tiposVehiculo: string[] = ['Sedan', 'SUV', 'Camioneta', 'Deportivo', 'Electrico', 'Compacto'];
+  ubicacion: string = '';
+  tipoVehiculo: string = '';
   loadingImages: { [key: string]: boolean } = {};
-  defaultImage = 'assets/default-property.webp';
+  defaultImage = 'assets/default-vehiculo.png';
 
   private configService = inject(ConfigService);
   private vehiculoService = inject(VehiculoService);
@@ -45,20 +50,7 @@ export class VehiculoListComponent implements OnInit {
 
     this.vehiculoService.getVehiculos(query).subscribe({
       next: (data) => {
-        this.vehiculos.set(
-          data.map((vehiculo) => ({
-            ...vehiculo,
-            imageUrls:
-              vehiculo.imageUrls?.length && vehiculo.imageUrls[0]
-                ? vehiculo.imageUrls.map((img) => this.getFullImageUrl(img))
-                : [this.defaultImage],
-          }))
-        );
-
-        this.vehiculos().forEach((vehiculo) => {
-          this.loadingImages[vehiculo.id] = true;
-        });
-
+        this.vehiculos.set(data);
         this.isLoading.set(false);
       },
       error: () => {
@@ -66,6 +58,39 @@ export class VehiculoListComponent implements OnInit {
       },
     });
   }
+  recargarVehiculos() {
+    this.filtroAplicado = false;
+    this.loadVehiculos('');
+  }
+  
+  limpiarFiltros() {
+    this.filtroAplicado = false;
+    this.ubicacion = '';
+    this.tipoVehiculo = '';
+    this.filtrarVehiculos();
+  }
+  
+  filtroAplicado = false;
+
+  filtrarVehiculos() {
+    this.filtroAplicado = true;
+  
+    let queryParams = [];
+  
+    if (this.ubicacion.trim()) {
+      queryParams.push(`ubicacion=${encodeURIComponent(this.ubicacion)}`);
+    }
+  
+    if (this.tipoVehiculo) {
+      queryParams.push(`tipoVehiculo=${this.tipoVehiculo}`);
+    }
+  
+    const queryString = queryParams.length ? queryParams.join('&') : '';
+  
+    this.loadVehiculos(queryString);
+  }
+  
+
 
   getFullImageUrl(imagePath: string): string {
     if (!imagePath) {

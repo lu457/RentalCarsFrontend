@@ -5,7 +5,7 @@
 
 
     <div class="nav-actions">
-      <!-- Botón de Crear Propiedad -->
+      <!-- Botón de Crear Vehiculo -->
       <button mat-button class="text-white" (click)="createVehiculo()">
         <i class="bi bi-car-front"></i> Publicar Vehículo
       </button>
@@ -19,6 +19,7 @@
 
         <mat-menu #userMenu="matMenu">
           <button mat-menu-item (click)="goToProfile()">Perfil</button>
+          <button mat-menu-item (click)="getVehiculosPorPropietario()">Vehiculo</button>
           <button mat-menu-item color="warn" (click)="logout()">Cerrar Sesión</button>
         </mat-menu>
 

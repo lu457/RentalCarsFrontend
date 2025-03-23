@@ -7,7 +7,6 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 }
-
 /* Tarjetas de autos */
 .car-card {
   background: white;
@@ -20,11 +19,11 @@ body {
   height: 100%;
   margin-bottom: 20px;
 }
-
 .car-image {
   width: 100%;
   height: 180px;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .car-details {
@@ -35,7 +34,6 @@ body {
   justify-content: space-between;
 }
 
-/* Textos y títulos */
 .h1, .h2, .h3, .h4, .h5, .h6, .caption-title {
   font-family: 'Raleway', sans-serif;
 }

@@ -16,15 +16,15 @@ export class VehiculoService {
 
   constructor(private http: HttpClient) {}
 
-  getVehiculos(
-    query: string = '',
-    page: number = 1,
-    limit: number = 10
-  ): Observable<Vehiculo[]> {
-    return this.http.get<Vehiculo[]>(
-      `${this.apiUrl}/api/vehiculos?${query}&page=${page}&limit=${limit}`
-    );
+  getVehiculos(query: string = ''): Observable<Vehiculo[]> {
+    const endpoint = query ? `/api/vehiculos/filtrar?${query}` : `/api/vehiculos`;
+    return this.http.get<Vehiculo[]>(`${this.apiUrl}${endpoint}`);
   }
+  
+  getVehiculosPorPropietario(): Observable<Vehiculo[]> {
+    return this.http.get<Vehiculo[]>(`${this.apiUrl}/api/vehiculos/propietario`);
+  }
+  
 
   getVehiculoById(id: string): Observable<Vehiculo> {
     return this.http.get<Vehiculo>(`${this.apiUrl}/api/vehiculos/${id}`);

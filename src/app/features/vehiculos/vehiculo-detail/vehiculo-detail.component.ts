@@ -28,8 +28,8 @@ import 'owl.carousel';
 export class VehiculoDetailComponent implements OnInit, AfterViewInit, OnDestroy {
   vehiculo = signal<Vehiculo | null>(null);
   isLoading = signal<boolean>(true);
-  defaultImage = 'assets/default-vehiculo.webp';
-  modalImageSrc = signal<string>(''); // Imagen del modal
+  defaultImage = 'assets/default-vehiculo.png';
+  modalImageSrc = signal<string>('');
   selectedImage = signal<string>(this.defaultImage); // Imagen principal seleccionada
 
   private vehiculoService = inject(VehiculoService);
@@ -98,7 +98,7 @@ export class VehiculoDetailComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   changeMainImage(img: string): void {
-    this.selectedImage.set(img); // Cambia la imagen principal
+    this.selectedImage.set(img);
   }
 
   changeImage(index: number): void {
@@ -112,9 +112,9 @@ export class VehiculoDetailComponent implements OnInit, AfterViewInit, OnDestroy
     const currentIndex = images.indexOf(this.selectedImage());
   
     if (currentIndex > 0) {
-      this.selectedImage.set(images[currentIndex - 1]); // Imagen anterior
+      this.selectedImage.set(images[currentIndex - 1]);
     } else {
-      this.selectedImage.set(images[images.length - 1]); // Vuelve a la última imagen
+      this.selectedImage.set(images[images.length - 1]);
     }
   }
   
@@ -123,9 +123,9 @@ export class VehiculoDetailComponent implements OnInit, AfterViewInit, OnDestroy
     const currentIndex = images.indexOf(this.selectedImage());
   
     if (currentIndex < images.length - 1) {
-      this.selectedImage.set(images[currentIndex + 1]); // Imagen siguiente
+      this.selectedImage.set(images[currentIndex + 1]);
     } else {
-      this.selectedImage.set(images[0]); // Vuelve a la primera imagen
+      this.selectedImage.set(images[0]);
     }
   }
   

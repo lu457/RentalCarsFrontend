@@ -7,6 +7,7 @@ import { ReservasComponent } from './features/reservas/reservas.component';
 import { VehiculoDetailComponent } from './features/vehiculos/vehiculo-detail/vehiculo-detail.component';
 import { VehiculoFormComponent } from './features/vehiculos/vehiculo-form/vehiculo-form.component';
 import { VehiculoListComponent } from './features/vehiculos/vehiculo-list/vehiculo-list.component';
+import { VehiculoTablaComponent } from './features/vehiculos/vehiculo-tabla/vehiculo-tabla.component';
 
 export const routes: Routes = [
     {path: '', component: VehiculoListComponent },
@@ -24,7 +25,14 @@ export const routes: Routes = [
         canActivate: [authGuard],
     },
     {
-        path: 'dashboard',
-        component: DashboardComponent,
+        path: 'vehiculos/tabla',
+        component: VehiculoTablaComponent,
+        canActivate: [authGuard],
     },
+    {
+        path: 'vehiculos/editar/:id',
+        component: VehiculoFormComponent,
+        canActivate: [authGuard],
+    },
+    
 ];
